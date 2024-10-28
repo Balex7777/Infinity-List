@@ -7,26 +7,48 @@ import { IItem } from './models'
 
 function App() {
 	const [items, setItems] = useState<IItem[]>([])
+	const [page, setPage] = useState(1);
+	const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
-	async function fetchItems() {
+	async function fetchItems(page: number) {
 		try{
-			const response = await axios.get('https://api.github.com/search/repositories?q=javascript&sort=stars&order=asc&page=1');
-			setItems(response.data.items)
+			setLoading(true)
+			const response = await axios.get(`https://api.github.com/search/repositories?q=javascript&sort=stars&order=asc&page=${page}`);
+			setItems((prev) => [...prev, ...response.data.items])
+			setHasMore(response.data.items.length > 0);
 		}catch (error:unknown){
 			console.error(error);
+		}finally{
+			setLoading(false)
 		}
 	}
 
 	useEffect(()=>{
-		fetchItems()
-	}, []);
+		fetchItems(page)
+	}, [page]);
+
+	useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop
+        >= document.documentElement.offsetHeight - 100 && hasMore && !loading
+      ) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loading, hasMore]);
 
   return (
     <>
       <Header />
 			<main className='main'>
 				<section className='items'>
-					{items.map(item => <Item item={item} key={item.id}/>)}
+					{items.map((item, index) => <Item item={item} key={`${item.id}-${index}`}/>)}
+					{loading && <p className="loading">Loading...</p>}
 				</section>
 			</main>
     </>
