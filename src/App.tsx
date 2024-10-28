@@ -1,33 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import axios from 'axios'
 import './App.css'
+import Header from './components/Header/Header'
+import Item from './components/Item/Item'
+import { useEffect, useState } from 'react'
+import { IItem } from './models'
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [items, setItems] = useState<IItem[]>([])
+
+	async function fetchItems() {
+		try{
+			const response = await axios.get('https://api.github.com/search/repositories?q=javascript&sort=stars&order=asc&page=1');
+			setItems(response.data.items)
+		}catch (error:unknown){
+			console.error(error);
+		}
+	}
+
+	useEffect(()=>{
+		fetchItems()
+	}, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+			<main className='main'>
+				<section className='items'>
+					{items.map(item => <Item item={item} key={item.id}/>)}
+				</section>
+			</main>
     </>
   )
 }
