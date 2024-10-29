@@ -1,15 +1,18 @@
 .main{
 	max-width: 1300px;
 	margin: auto;
-}
-
-.items{
 	padding: 0 20px;
-	margin-bottom: 200px;
 }
 
 .loading{
-	font-size: 30px;
-	text-align: center;
-	font-weight: 600;
+	border-top: 1px #3D444D solid;
+	padding: 25px 20px;
+}
+
+.loading .ant-skeleton-content .ant-skeleton-paragraph > li {
+  background-color: #333 !important; /* Dark color for loading bars */
+}
+
+.loading .ant-skeleton-title {
+  background-color: #333 !important; /* Slightly different dark color for title */
 }

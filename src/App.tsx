@@ -4,23 +4,22 @@ import Header from './components/Header/Header'
 import Item from './components/Item/Item'
 import { useEffect, useState } from 'react'
 import { IItem } from './models'
+import { List, Skeleton } from 'antd'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 function App() {
 	const [items, setItems] = useState<IItem[]>([])
 	const [page, setPage] = useState(1);
-	const [loading, setLoading] = useState(false);
+	// const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
 	async function fetchItems(page: number) {
 		try{
-			setLoading(true)
-			const response = await axios.get(`https://api.github.com/search/repositories?q=javascript&sort=stars&order=asc&page=${page}`);
+			const response = await axios.get(`https://api.github.com/search/repositories?q=javascript&order=asc&page=${page}`);
 			setItems((prev) => [...prev, ...response.data.items])
 			setHasMore(response.data.items.length > 0);
 		}catch (error:unknown){
-			console.error(error);
-		}finally{
-			setLoading(false)
+			console.log(error);
 		}
 	}
 
@@ -28,28 +27,25 @@ function App() {
 		fetchItems(page)
 	}, [page]);
 
-	useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop
-        >= document.documentElement.offsetHeight - 100 && hasMore && !loading
-      ) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [loading, hasMore]);
-
   return (
     <>
       <Header />
 			<main className='main'>
-				<section className='items'>
-					{items.map((item, index) => <Item item={item} key={`${item.id}-${index}`}/>)}
-					{loading && <p className="loading">Loading...</p>}
-				</section>
+				<InfiniteScroll
+					dataLength={items.length}
+					next={() => setPage(prev => prev + 1)}
+					hasMore={hasMore}
+					loader={<Skeleton active paragraph={{ rows: 2 }} className='loading' />}
+				>
+					<List 
+						locale={{emptyText: " "}}
+						dataSource={items}
+						renderItem={(item) => (
+							<Item item={item} key={item.id}/>
+						)}
+						className='items'
+					/>
+				</InfiniteScroll>
 			</main>
     </>
   )

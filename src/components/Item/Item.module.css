@@ -3,7 +3,7 @@
 	width: 100%;
 	display: flex;
 	/* border-radius: 15px; */
-	border-top: 1px #AAA solid;
+	border-top: 1px #3D444D solid;
 	padding: 25px 20px;
 	align-items: center;
 	justify-content:space-between;
@@ -12,12 +12,14 @@
 .item__title{
 	margin: 0;
 	margin-right: 10px;
+	color: #4493F8;
 }
 
 .item__owner{
 	display: flex;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 15px;
+	color: #EEE;
 }
 
 .item__avatar{
@@ -36,4 +38,5 @@
 .item__star{
 	display: block;
 	margin: 0 5px;
+	fill: #AAA;
 }
