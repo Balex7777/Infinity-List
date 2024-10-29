@@ -1,12 +1,19 @@
 import React from 'react'
 import styles from "./Item.module.css"
 import { IItem } from '../../models'
+import { DeleteOutlined, EditOutlined, QuestionCircleOutlined } from '@ant-design/icons'
+import { Popconfirm } from 'antd'
 
 interface ItemProps{
 	item: IItem
+	deleteItem: (id: number) => void
 }
 
-export default function Item({item} : ItemProps) {
+export default function Item({item, deleteItem} : ItemProps) {
+	const handleDelete = () => {
+		deleteItem(item.id)
+	}
+
 	return (
 		<div className={styles.item}>
 			<div>
@@ -23,8 +30,17 @@ export default function Item({item} : ItemProps) {
 				</div>
 			</div>
 			<div>
-				<button>Edit</button>
-				<button>Delete</button>
+				<EditOutlined 
+					className={styles.item__icon}
+				/>
+				<Popconfirm 
+					title="Delete the item"
+					description="Are you sure to delete this item?"
+					icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+					onConfirm={handleDelete}
+				>
+					<DeleteOutlined className={styles.item__icon}/>
+				</Popconfirm>
 			</div>
 		</div>
 	)

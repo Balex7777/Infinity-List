@@ -40,3 +40,15 @@
 	margin: 0 5px;
 	fill: #AAA;
 }
+
+.item__icon{
+	transition: .3s;
+	font-size: 20px;
+	color: #AAA;
+	margin-left: 15px;
+	cursor: pointer;
+}
+
+.item__icon:hover{
+	color: #CCC;
+}

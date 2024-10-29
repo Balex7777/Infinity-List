@@ -23,6 +23,10 @@ function App() {
 		}
 	}
 
+	const deleteItem = (id:number) => {
+		setItems(prev => prev.filter(item => item.id !== id))
+	}
+
 	useEffect(()=>{
 		fetchItems(page)
 	}, [page]);
@@ -41,7 +45,7 @@ function App() {
 						locale={{emptyText: " "}}
 						dataSource={items}
 						renderItem={(item) => (
-							<Item item={item} key={item.id}/>
+							<Item item={item} key={item.id} deleteItem={deleteItem}/>
 						)}
 						className='items'
 					/>
