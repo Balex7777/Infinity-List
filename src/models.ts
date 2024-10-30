@@ -3,6 +3,7 @@ export interface IItem{
 	full_name: string
 	stargazers_count: number
 	html_url: string
+	forks: number
 	owner: {
 		login: string
 		avatar_url: string

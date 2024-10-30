@@ -7,6 +7,7 @@ interface IFormValues {
   html_url: string;
   login: string;
   stargazers_count: number;
+	forks: number
 }
 
 interface ModalProps {
@@ -25,6 +26,7 @@ export default function CustomModal({ modal, setModal, localItem, setLocalItem, 
 			html_url: values.html_url,
 			owner: { ...prevItem.owner, login: values.login },
 			stargazers_count: values.stargazers_count,
+			forks: values.forks
 		}));
   };
 
@@ -48,6 +50,7 @@ export default function CustomModal({ modal, setModal, localItem, setLocalItem, 
 						html_url: localItem.html_url,
 						login: localItem.owner.login,
 						stargazers_count: localItem.stargazers_count,
+						forks: localItem.forks
 					}}
 					onFinish={(values) => {
 						onEdit(values);
@@ -84,6 +87,13 @@ export default function CustomModal({ modal, setModal, localItem, setLocalItem, 
 				name="stargazers_count"
 				label="Stars"
 				rules={[{ required: true, message: 'Please input count of stars!' }]}
+			>
+				<Input type="number" />
+			</Form.Item>
+			<Form.Item
+				name="forks"
+				label="Forks"
+				rules={[{ required: true, message: 'Please input count of forks!' }]}
 			>
 				<Input type="number" />
 			</Form.Item>

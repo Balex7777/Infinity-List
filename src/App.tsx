@@ -1,7 +1,7 @@
 import axios from 'axios'
 import './App.css'
 import CustomItem from './components/CustomItem/CustomItem'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { IItem } from './models'
 import { ConfigProvider, List, Skeleton, theme, Layout, Flex, Radio } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -9,12 +9,19 @@ import { Content, Footer, Header } from 'antd/es/layout/layout'
 
 function App() {
 	const [items, setItems] = useState<IItem[]>([])
+	const [sortValue, setSortValue] = useState("a")
 	const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-	async function fetchItems(page: number) {
+	const sortMap: Record<string, string> = {
+			a: "",
+			b: "sort=forks&",
+			c: "sort=stars&",
+	};
+
+	async function fetchItems(page: number, sort: string) {
 		try{
-			const response = await axios.get(`https://api.github.com/search/repositories?q=javascript&order=asc&page=${page}`);
+			const response = await axios.get(`https://api.github.com/search/repositories?q=javascript&${sort}order=asc&page=${page}`);
 			setItems((prev) => [...prev, ...response.data.items])
 			setHasMore(response.data.items.length > 0);
 		}catch (error:unknown){
@@ -26,9 +33,17 @@ function App() {
 		setItems(prev => prev.filter(item => item.id !== id))
 	}
 
-	useEffect(()=>{
-		fetchItems(page)
-	}, [page]);
+	const radioHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		setSortValue(e.target.value)
+		setPage(1)
+		setItems([])
+		console.log(e.target.value)
+	}
+
+	useEffect(() => {
+    fetchItems(page, sortMap[sortValue]);
+}, [page, sortValue]);
+
 
   return (
     <ConfigProvider
@@ -42,18 +57,19 @@ function App() {
 				algorithm: theme.darkAlgorithm,
 			}}
 		>
-			<Layout >
+			<Layout className='layout'>
 				<Header>
 					<h1 className='header__title'>The Infinity List</h1>	
 				</Header>
 				<Content className='main'>
-
-					<Radio.Group defaultValue="a" buttonStyle="solid" className='radio'>
-						<Radio.Button value="a">Hangzhou</Radio.Button>
-						<Radio.Button value="b">Shanghai</Radio.Button>
-						<Radio.Button value="c">Beijing</Radio.Button>
-						<Radio.Button value="d">Chengdu</Radio.Button>
-					</Radio.Group>
+					<div className='sorting'>
+						<p className='sorting__text'>Sorted by: </p>
+						<Radio.Group defaultValue="a" value={sortValue} buttonStyle="solid" className='radio' onChange={radioHandler}>
+							<Radio.Button value={"a"}>X</Radio.Button>
+							<Radio.Button value={"b"}>Forks</Radio.Button>
+							<Radio.Button value={"c"}>Stars</Radio.Button>
+						</Radio.Group>
+					</div>
 
 					<InfiniteScroll
 						dataLength={items.length}

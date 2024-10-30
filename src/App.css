@@ -16,6 +16,8 @@
 }
 
 .footer{
+	position: relative;
+	bottom: 0;
 	width: 100%;
 	max-width: 1200px;
 	margin: auto;
@@ -27,9 +29,18 @@
 	text-decoration: underline;
 }
 
-.radio{
-	position: relative;
+.sorting{
 	width: 100%;
 	justify-content: end;
 	display: flex;
+	align-items: center;
+}
+
+.sorting__text{
+	margin: 0 15px 0;
+	font-size: 16px;
+}
+
+.layout{
+	min-height: 100vh;
 }
