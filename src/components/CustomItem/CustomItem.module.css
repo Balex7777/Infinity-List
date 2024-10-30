@@ -2,8 +2,6 @@
 	margin: 0 auto;
 	width: 100%;
 	display: flex;
-	/* border-radius: 15px; */
-	border-top: 1px #3D444D solid;
 	padding: 25px 20px;
 	align-items: center;
 	justify-content:space-between;
@@ -11,8 +9,14 @@
 
 .item__title{
 	margin: 0;
-	margin-right: 10px;
-	color: #4493F8;
+}
+
+.item__title a{
+	color: #1668DC;
+}
+
+.item__title a:hover { 
+	color: #3C89E8;
 }
 
 .item__owner{

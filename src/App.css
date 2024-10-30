@@ -1,18 +1,35 @@
 .main{
-	max-width: 1300px;
+	position: relative;
+	width: 100%;
+	max-width: 1200px;
 	margin: auto;
 	padding: 0 20px;
 }
 
 .loading{
-	border-top: 1px #3D444D solid;
 	padding: 25px 20px;
 }
 
-.loading .ant-skeleton-content .ant-skeleton-paragraph > li {
-  background-color: #333 !important; /* Dark color for loading bars */
+.header__title{
+	margin: 0;
+	text-align: center;
 }
 
-.loading .ant-skeleton-title {
-  background-color: #333 !important; /* Slightly different dark color for title */
+.footer{
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+	color: #888;
+}
+
+.footer__github{
+	color: #888;
+	text-decoration: underline;
+}
+
+.radio{
+	position: relative;
+	width: 100%;
+	justify-content: end;
+	display: flex;
 }

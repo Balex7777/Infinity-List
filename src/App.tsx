@@ -1,16 +1,15 @@
 import axios from 'axios'
 import './App.css'
-import Header from './components/Header/Header'
-import Item from './components/Item/Item'
+import CustomItem from './components/CustomItem/CustomItem'
 import { useEffect, useState } from 'react'
 import { IItem } from './models'
-import { List, Skeleton } from 'antd'
+import { ConfigProvider, List, Skeleton, theme, Layout, Flex, Radio } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { Content, Footer, Header } from 'antd/es/layout/layout'
 
 function App() {
 	const [items, setItems] = useState<IItem[]>([])
 	const [page, setPage] = useState(1);
-	// const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
 	async function fetchItems(page: number) {
@@ -32,26 +31,56 @@ function App() {
 	}, [page]);
 
   return (
-    <>
-      <Header />
-			<main className='main'>
-				<InfiniteScroll
-					dataLength={items.length}
-					next={() => setPage(prev => prev + 1)}
-					hasMore={hasMore}
-					loader={<Skeleton active paragraph={{ rows: 2 }} className='loading' />}
-				>
-					<List 
-						locale={{emptyText: " "}}
-						dataSource={items}
-						renderItem={(item) => (
-							<Item item={item} key={item.id} deleteItem={deleteItem}/>
-						)}
-						className='items'
-					/>
-				</InfiniteScroll>
-			</main>
-    </>
+    <ConfigProvider
+			theme={{
+				components: {
+					Layout: {
+						headerBg: "#000",
+						headerColor: "#fff"
+					},
+				},
+				algorithm: theme.darkAlgorithm,
+			}}
+		>
+			<Layout >
+				<Header>
+					<h1 className='header__title'>The Infinity List</h1>	
+				</Header>
+				<Content className='main'>
+
+					<Radio.Group defaultValue="a" buttonStyle="solid" className='radio'>
+						<Radio.Button value="a">Hangzhou</Radio.Button>
+						<Radio.Button value="b">Shanghai</Radio.Button>
+						<Radio.Button value="c">Beijing</Radio.Button>
+						<Radio.Button value="d">Chengdu</Radio.Button>
+					</Radio.Group>
+
+					<InfiniteScroll
+						dataLength={items.length}
+						next={() => setPage(prev => prev + 1)}
+						hasMore={hasMore}
+						loader={<Skeleton active paragraph={{ rows: 2 }} className='loading' />}
+					>
+						<List 
+							locale={{emptyText: " "}}
+							dataSource={items}
+							renderItem={(item) => (
+								<List.Item>
+									<CustomItem item={item} key={item.id} deleteItem={deleteItem}/>
+								</List.Item>
+							)}
+							className='items'
+						/>
+					</InfiniteScroll>
+				</Content>
+				<Footer className='footer'>
+					<Flex justify='space-between'>
+						<p>© 2024 Morev Aleksey</p>
+						<p>My <a href='https://github.com/Balex7777' className='footer__github'>GitHub</a></p>
+					</Flex>
+				</Footer>
+			</Layout>
+    </ConfigProvider>
   )
 }
 
