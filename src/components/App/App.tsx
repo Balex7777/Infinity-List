@@ -49,6 +49,7 @@ function App() {
 
 
   return (
+		<React.Fragment>
     <ConfigProvider
 			theme={{
 				components: {
@@ -100,6 +101,7 @@ function App() {
 				</Footer>
 			</Layout>
     </ConfigProvider>
+		</React.Fragment>
   )
 }
 

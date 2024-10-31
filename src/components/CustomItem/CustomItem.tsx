@@ -23,6 +23,7 @@ export default function CustomItem({ item, deleteItem }: ItemProps) {
   };
 
   return (
+		<React.Fragment>
     <Flex className="item" justify="space-between">
       <Space direction='vertical' size='small'>
 				<Title level={3} className="item__title">
@@ -68,5 +69,6 @@ export default function CustomItem({ item, deleteItem }: ItemProps) {
         </Popconfirm>
       </div>
     </Flex>
+		</React.Fragment>
   );
 }

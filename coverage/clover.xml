@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1730402967337" clover="3.2.0">
-  <project timestamp="1730402967338" name="All files">
-    <metrics statements="175" coveredstatements="163" conditionals="5" coveredconditionals="5" methods="8" coveredmethods="5" elements="188" coveredelements="173" complexity="0" loc="175" ncloc="175" packages="2" files="2" classes="2"/>
+<coverage generated="1730404651129" clover="3.2.0">
+  <project timestamp="1730404651130" name="All files">
+    <metrics statements="177" coveredstatements="165" conditionals="5" coveredconditionals="5" methods="8" coveredmethods="5" elements="190" coveredelements="175" complexity="0" loc="177" ncloc="177" packages="2" files="2" classes="2"/>
     <package name="CustomItem">
-      <metrics statements="72" coveredstatements="72" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
+      <metrics statements="74" coveredstatements="74" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
       <file name="CustomItem.tsx" path="C:\Users\Balex\Documents\Front-end\vk-infinity-list\react-ts\src\components\CustomItem\CustomItem.tsx">
-        <metrics statements="72" coveredstatements="72" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <metrics statements="74" coveredstatements="74" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -64,8 +64,8 @@
         <line num="56" count="4" type="stmt"/>
         <line num="57" count="4" type="stmt"/>
         <line num="58" count="4" type="stmt"/>
-        <line num="59" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="60" count="4" type="stmt"/>
+        <line num="59" count="4" type="stmt"/>
+        <line num="60" count="4" type="cond" truecount="1" falsecount="0"/>
         <line num="61" count="4" type="stmt"/>
         <line num="62" count="4" type="stmt"/>
         <line num="63" count="4" type="stmt"/>
@@ -78,6 +78,8 @@
         <line num="70" count="4" type="stmt"/>
         <line num="71" count="4" type="stmt"/>
         <line num="72" count="4" type="stmt"/>
+        <line num="73" count="4" type="stmt"/>
+        <line num="74" count="4" type="stmt"/>
       </file>
     </package>
     <package name="CustomModal">

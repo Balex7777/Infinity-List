@@ -4,14 +4,6 @@ import CustomItem from '../components/CustomItem/CustomItem';
 import { IItem } from '../models';
 import '@testing-library/jest-dom';
 
-
-// Мокаем зависимые компоненты
-// jest.mock('@ant-design/icons', () => ({
-//   DeleteOutlined: jest.fn(() => <div data-testid="delete-icon" />),
-//   EditOutlined: jest.fn(() => <div data-testid="edit-icon" />),
-// 	QuestionCircleOutlined: () => <span>QuestionCircleOutlined</span>
-// }));
-
 const mockDeleteItem = jest.fn();
 const item: IItem = {
   id: 1,
@@ -31,7 +23,11 @@ describe('CustomItem', () => {
   });
 
   test('отображение основного контента', () => {
-    render(<CustomItem item={item} deleteItem={mockDeleteItem} />);
+    render(
+			<React.Fragment>
+				<CustomItem item={item} deleteItem={mockDeleteItem} />
+			</React.Fragment>
+		);
 
     // Проверка наличия ссылки на репозиторий
     const repoLink = screen.getByRole('link', { name: 'Test Repository' });
@@ -60,7 +56,11 @@ describe('CustomItem', () => {
   });
 
   test('открытие модального окна при нажатии на иконку редактирования', () => {
-    render(<CustomItem item={item} deleteItem={mockDeleteItem} />);
+    render(
+			<React.Fragment>
+				<CustomItem item={item} deleteItem={mockDeleteItem} />
+			</React.Fragment>
+		);
 
     // Нажимаем на иконку редактирования
     fireEvent.click(screen.getByTestId('edit-icon'));

@@ -2,7 +2,7 @@ TN:
 SF:src\components\CustomItem\CustomItem.tsx
 FN:16,CustomItem
 FN:21,handleDelete
-FN:59,onClick
+FN:60,onClick
 FNF:3
 FNH:3
 FNDA:4,CustomItem
@@ -80,11 +80,13 @@ DA:69,4
 DA:70,4
 DA:71,4
 DA:72,4
-LF:72
-LH:72
+DA:73,4
+DA:74,4
+LF:74
+LH:74
 BRDA:16,0,0,4
 BRDA:21,1,0,1
-BRDA:59,2,0,1
+BRDA:60,2,0,1
 BRF:3
 BRH:3
 end_of_record
