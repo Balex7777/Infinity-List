@@ -1,50 +1,61 @@
-# React + TypeScript + Vite
+# Проект: Mesto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📄 Описание проекта
+Одностраничный сайт, который выводит репозитории с GitHub, связанные с JavaScript
 
-Currently, two official plugins are available:
+## 🛠️ Функционал
+- Бесконечная прокрутка
+- Редактирование элемента списка
+- Удаление элемента списка
+- Сортировка по разным полям
+- Индикация подгрузки данных
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## :gear: Стек технологий и приобретенные навыки
 
-## Expanding the ESLint configuration
+**Стек:**
+- HTML
+- CSS-модули
+- TypeScript
+- React
+- Vite
+- Jest + React Testing Library
+- Ant Design
+- Axios
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**Использованные навыки:**
+- Основы работы на TypeScript
+- Работа с хуками useState, useEffect
+- Сборка проекта на Vite
+- Взаимодействие с API при помощи библиотеки Axios
 
-- Configure the top-level `parserOptions` property like this:
+**Приобретенные навыки:**
+- Работа с UI Kit - Ant Design. Была выбрана эта библиотека потому, что она имеет широкий набор компонентов, адаптивный дизайн и большое сообщество разработчиков, которые ей пользуются. Я в дальнейшемобязательно продолжу изучать эту тему.
+- Написание unit тестов на Jest + React Testing Library. 
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Как установить проект
+
+1. Склонируйте репозиторий:
+   ```bash
+   git clone https://github.com/Balex7777/Infinity-List.git
+   ```
+2. Перейдите в директорию репозитория.
+	```bash
+   cd Infinity-List
+   ```
+3. Установите зависимости.
+	```bash
+   npm install
+   ```
+4. Запустите проект в режиме разработки.
+	```bash
+   npm run dev
+   ```
+
+**Чтобы запустить тесты нужно ввести команду:**
+```bash
+npm run test
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## :bookmark_tabs: **Сложности, с которыми я столкнулся в ходе разработки**
+- Подключение компонентов с Ant-Design
+- Подключение и написание unit тестов
