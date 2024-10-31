@@ -1,12 +1,15 @@
+import React from 'react';
 import axios from 'axios'
-import './App.css'
-import CustomItem from './components/CustomItem/CustomItem'
-import { ChangeEvent, useEffect, useState } from 'react'
-import { IItem } from './models'
-import { ConfigProvider, List, Skeleton, theme, Layout, Flex, Radio } from 'antd'
+// import 'App.css'
+import CustomItem from '../CustomItem/CustomItem'
+import { useEffect, useState } from 'react'
+import { IItem } from '../../models'
+import { ConfigProvider, List, Skeleton, theme, Layout, Flex, Radio, Typography } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { Content, Footer, Header } from 'antd/es/layout/layout'
-import Title from 'antd/es/typography/Title'
+import { RadioChangeEvent } from 'antd/lib/radio/interface';
+
+const { Content, Footer, Header } = Layout;
+const { Title } = Typography;
 
 function App() {
 	const [items, setItems] = useState<IItem[]>([])
@@ -34,7 +37,7 @@ function App() {
 		setItems(prev => prev.filter(item => item.id !== id))
 	}
 
-	const radioHandler = (e: ChangeEvent<HTMLInputElement>) => {
+	const radioHandler = (e: RadioChangeEvent) => {
 		setSortValue(e.target.value)
 		setPage(1)
 		setItems([])
