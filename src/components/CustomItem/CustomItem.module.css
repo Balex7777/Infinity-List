@@ -22,15 +22,11 @@
 .item__owner{
 	display: flex;
 	align-items: center;
-	margin-top: 15px;
 	color: #EEE;
 }
 
 .item__avatar{
 	border-radius: 100%;
-	width: 40px;
-	height: 40px;
-	margin-right: 10px;
 }
 
 .item__stars{
@@ -55,4 +51,9 @@
 
 .item__icon:hover{
 	color: #CCC;
+}
+
+.owner__login{
+	margin: 0;
+	color: #1668DC	;
 }

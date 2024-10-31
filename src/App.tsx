@@ -6,6 +6,7 @@ import { IItem } from './models'
 import { ConfigProvider, List, Skeleton, theme, Layout, Flex, Radio } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Content, Footer, Header } from 'antd/es/layout/layout'
+import Title from 'antd/es/typography/Title'
 
 function App() {
 	const [items, setItems] = useState<IItem[]>([])
@@ -37,12 +38,11 @@ function App() {
 		setSortValue(e.target.value)
 		setPage(1)
 		setItems([])
-		console.log(e.target.value)
 	}
 
 	useEffect(() => {
     fetchItems(page, sortMap[sortValue]);
-}, [page, sortValue]);
+	}, [page, sortValue]);
 
 
   return (
@@ -58,18 +58,18 @@ function App() {
 			}}
 		>
 			<Layout className='layout'>
-				<Header>
-					<h1 className='header__title'>The Infinity List</h1>	
+				<Header className='header'>
+					<Title level={1} className='header__title'>The Infinity List</Title>	
 				</Header>
 				<Content className='main'>
-					<div className='sorting'>
-						<p className='sorting__text'>Sorted by: </p>
-						<Radio.Group defaultValue="a" value={sortValue} buttonStyle="solid" className='radio' onChange={radioHandler}>
+					<Flex className='sorting' justify='end'>
+						<p className='sorting__text'>Sorted by:</p>
+						<Radio.Group onChange={radioHandler} defaultValue="a" value={sortValue} buttonStyle="solid" className='radio'>
 							<Radio.Button value={"a"}>X</Radio.Button>
 							<Radio.Button value={"b"}>Forks</Radio.Button>
 							<Radio.Button value={"c"}>Stars</Radio.Button>
 						</Radio.Group>
-					</div>
+					</Flex>
 
 					<InfiniteScroll
 						dataLength={items.length}

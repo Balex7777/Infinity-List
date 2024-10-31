@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styles from './CustomItem.module.css';
 import { IItem } from '../../models';
 import { DeleteOutlined, EditOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { Flex, Form, Popconfirm } from 'antd';
+import { Flex, Form, Image, Popconfirm, Space } from 'antd';
 import CustomModal from '../CustomModal/CustomModal';
+import Title from 'antd/es/typography/Title';
 
 interface ItemProps {
   item: IItem;
@@ -21,15 +22,15 @@ export default function CustomItem({ item, deleteItem }: ItemProps) {
 
   return (
     <Flex className={styles.item} justify="space-between">
-      <div>
-				<h2 className={styles.item__title}>
+      <Space direction='vertical' size='small'>
+				<Title level={3} className={styles.item__title}>
 					<a href={localItem.html_url} target="_blank" rel="noopener noreferrer">
 						{localItem.full_name}
 					</a>
-				</h2>
-        <div className={styles.item__owner}>
-          <img src={localItem.owner.avatar_url} alt={localItem.owner.login} className={styles.item__avatar} />
-          <h3>{localItem.owner.login}</h3>
+				</Title>
+        <Flex className={styles.item__owner}>
+          <Image width={30} preview={false} src={localItem.owner.avatar_url} alt={localItem.owner.login} className={styles.item__avatar} />
+          <p style={{marginLeft: 10}}>{localItem.owner.login}</p>
           <div className={styles.item__stars}>
             <svg
               aria-hidden="true"
@@ -50,8 +51,8 @@ export default function CustomItem({ item, deleteItem }: ItemProps) {
 						</svg>
             <span>{localItem.forks}</span>
           </div>
-        </div>
-      </div>
+        </Flex>
+      </Space>
       <div>
         <EditOutlined onClick={() => setModal(true)} className={styles.item__icon} />
         <CustomModal modal={modal} setModal={setModal} localItem={localItem} setLocalItem={setLocalItem} form={form}/>
