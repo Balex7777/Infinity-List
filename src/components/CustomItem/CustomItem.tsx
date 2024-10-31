@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import 'CustomItem.css';
+import './CustomItem.css';
 import { IItem } from '../../models';
 import { DeleteOutlined, EditOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { Flex, Form, Image, Popconfirm, Space, Typography } from 'antd';

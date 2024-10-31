@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-// import 'App.css'
+import './App.css'
 import CustomItem from '../CustomItem/CustomItem'
 import { useEffect, useState } from 'react'
 import { IItem } from '../../models'
