@@ -1,59 +1,59 @@
-.item{
+.item {
 	margin: 0 auto;
 	width: 100%;
 	display: flex;
 	padding: 25px 20px;
 	align-items: center;
-	justify-content:space-between;
+	justify-content: space-between;
 }
 
-.item__title{
+.item__title {
 	margin: 0;
 }
 
-.item__title a{
-	color: #1668DC;
+.item__title a {
+	color: #1668dc;
 }
 
-.item__title a:hover { 
-	color: #3C89E8;
+.item__title a:hover {
+	color: #3c89e8;
 }
 
-.item__owner{
+.item__owner {
 	display: flex;
 	align-items: center;
-	color: #EEE;
+	/* color: #000; */
 }
 
-.item__avatar{
+.item__avatar {
 	border-radius: 100%;
 }
 
-.item__stars{
+.item__stars {
 	display: flex;
 	align-items: center;
 	margin-left: 10px;
 }
 
-.item__star{
+.item__star {
 	display: block;
 	margin: 0 5px;
-	fill: #AAA;
+	fill: #333;
 }
 
-.item__icon{
-	transition: .3s;
+.item__icon {
+	transition: 0.3s;
 	font-size: 20px;
-	color: #AAA;
+	color: #333;
 	margin-left: 15px;
 	cursor: pointer;
 }
 
-.item__icon:hover{
-	color: #CCC;
+.item__icon:hover {
+	color: #666;
 }
 
-.owner__login{
+.owner__login {
 	margin: 0;
-	color: #1668DC	;
+	color: #1668dc;
 }
